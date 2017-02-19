@@ -772,6 +772,16 @@
     //XFLD
     "CONTACT_US": "Contact Us",
     //XFLD
-    "SITE_MAP": "Site Map"
+    "SITE_MAP": "Site Map",
+
+    //XFLD
+    //-------------------------------------------------
+    // Wishlist
+    //-------------------------------------------------
+
+    //XGRP
+    "WISH_LIST": "Wishlist",
+    //XBUT
+    "TOTAL_PRICE": "Total Price"
 
 }

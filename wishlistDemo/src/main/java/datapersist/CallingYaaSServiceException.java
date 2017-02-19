@@ -1,4 +1,4 @@
-package com.sample.wishlistDemo;
+package datapersist;
 
 public class CallingYaaSServiceException extends RuntimeException {
 

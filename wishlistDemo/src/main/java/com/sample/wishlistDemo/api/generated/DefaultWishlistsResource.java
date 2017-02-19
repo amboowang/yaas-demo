@@ -9,8 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.sample.wishlistDemo.DocuServiceWrapper;
-import com.sample.wishlistDemo.OAuthWrapper;
+import datapersist.DocuServiceWrapper;
+import datapersist.OAuthWrapper;
 import com.sample.wishlistDemo.api.generated.WishlistItem;
 import com.sample.wishlistDemo.api.generated.YaasAwareParameters;
 
@@ -30,7 +30,7 @@ public class DefaultWishlistsResource implements com.sample.wishlistDemo.api.gen
 	private static final Logger LOGGER = LoggerFactory.getLogger(DocuServiceWrapper.class);
 	
     //@Autowired
-    private DocuServiceWrapper dsw = new DocuServiceWrapper();
+    //private DocuServiceWrapper dsw = new DocuServiceWrapper();
     
     //@Autowired
     private DataPersist dbRepo = new WishlistRepo();
@@ -42,16 +42,8 @@ public class DefaultWishlistsResource implements com.sample.wishlistDemo.api.gen
 		// place some logic here
 		LOGGER.info("GET /wishlist");
 		
-		Wishlist  l = new Wishlist();
-		l.setId("test111");
-		l.setOwner("amboowang@outlook.com");
-		
-		//return Response.ok()
-		//	.entity(new java.util.ArrayList<Wishlist>()).build();
-		
-		//Wishlist[] a = dsw.get();
 		return Response.ok()
-			.entity(new Gson().toJson(l)).build();		
+			.entity(new java.util.ArrayList<Wishlist>()).build();	
 	}
 
 	/* POST / */
@@ -60,12 +52,11 @@ public class DefaultWishlistsResource implements com.sample.wishlistDemo.api.gen
 	{
 		// place some logic here
 		LOGGER.info("POST /wishlist");
-		// call the docu service to store
+		// call the document service to save the data
 		
-		//how to save? this is a single wishlist belong to a ower
 		//dsw.post(wishlist);
 		
-		//save to db have to
+		//save to db have to as the auth scope problem(403 error)
 		dbRepo.create(wishlist);
 		
 		return Response.created(uriInfo.getAbsolutePath())
@@ -87,7 +78,7 @@ public class DefaultWishlistsResource implements com.sample.wishlistDemo.api.gen
 		else {
 			LOGGER.info("GET /wishlist/"+wishlistId+" not found");	
 			return Response.ok()
-					.entity("not found").build();
+					.entity("{ret:not found}").build();
 		}
 	}
 

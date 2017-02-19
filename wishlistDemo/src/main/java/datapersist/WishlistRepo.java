@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.ManagedBean;
 
+import org.jvnet.hk2.annotations.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -13,11 +14,9 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import com.sample.wishlistDemo.api.generated.Wishlist;
 
-@Component
 public class WishlistRepo implements DataPersist {
 	
 	public WishlistRepo() {
@@ -33,7 +32,26 @@ public class WishlistRepo implements DataPersist {
 	
 	@Override
 	public void create(Wishlist wishlist) {
-		mongoOperation.save(wishlist);
+		//if the list already existed, how to do?
+		String owner = wishlist.getOwner();
+		
+		Query query = new Query();
+		query.addCriteria(Criteria.where("_owner").is(owner));
+		
+		Wishlist p = mongoOperation.findOne(query, Wishlist.class);
+		
+		if (p == null) {
+			//this is first one, so just save it
+			mongoOperation.save(wishlist);
+		}
+		else
+		{
+			//append the new to the previous list
+			p.getItems().addAll(wishlist.getItems());
+			mongoOperation.remove(query, Wishlist.class);
+			mongoOperation.save(p);
+		}		
+		
 	}
 	
 	@Override
@@ -45,7 +63,7 @@ public class WishlistRepo implements DataPersist {
 		
 		//if (mongoOperation.exists(query, Wishlist.class)) {
 			// list belong to the owner exist one at least
-			r = mongoOperation.findOne(query, Wishlist.class);
+		r = mongoOperation.findOne(query, Wishlist.class);
 		//}
 		
 		return r;

@@ -21,4 +21,5 @@
 
 	<!-- take annotation-based configuration into account, when instantiating beans -->
 	<context:annotation-config/>
+	
 </beans>

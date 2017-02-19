@@ -1,4 +1,4 @@
-package com.sample.wishlistDemo;
+package datapersist;
 
 import java.util.Map;
 import java.util.Optional;
@@ -20,7 +20,6 @@ import org.springframework.web.client.RestTemplate;
 import com.google.gson.Gson;
 //import com.sample.WishlistDemo.Tip;
 import com.sample.wishlistDemo.api.generated.Wishlist;
-import com.sample.wishlistDemo.CallingYaaSServiceException;
 
 @ManagedBean
 @PropertySource("classpath:default.properties")
