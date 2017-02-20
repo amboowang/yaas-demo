@@ -204,6 +204,11 @@ angular.module('ds.account')
                 }
             };
 
+            //new added to show the products in the wishlist
+            $scope.showAllWishlist = function() {
+                
+            };
+
             $scope.showAllAddresses = function () {
                 $scope.showAllAddressButton = !$scope.showAllAddressButton;
                 $scope.showAddressFilter = $scope.showAllAddressButton ? $scope.showAddressDefault : $scope.addresses.length;
