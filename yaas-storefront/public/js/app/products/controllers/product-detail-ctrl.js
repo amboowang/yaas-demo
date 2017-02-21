@@ -195,11 +195,13 @@ angular.module('ds.products')
                     items: [
                         {
                             product: $scope.product.id,
-                            amount: $scope.productDetailQty
+                            amount: $scope.product.prices[0].originalAmount,
+                            note: $scope.product.prices[0].currency,
+                            createdAt: new Date()
                         }
                     ]
                 };
-                WishlistSvc.createWishlist(newWishlist);    
+                WishlistSvc.createWishlist(newWishlist);
             };
 
             // Helper functions to check if the currently displayed product is a base product or a product variant

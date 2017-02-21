@@ -146,37 +146,27 @@
         </div>
       </div>
 
-      <div ng-if="orders.length"  class="table-responsive hidden-sm hidden-xs">
+      <div ng-if="wsitems"  class="table-responsive hidden-sm hidden-xs">
         <table class="table">
           <thead>
             <tr>
               <th>{{'DATE' | translate}}</th>
-              <th>{{'ORDER_NUMBER' | translate}}</th>
-              <th>{{'ITEMS_IN_ORDER' | translate}}</ht>
-              <th>{{'ORDER_TOTAL' | translate}}</th>
-              <th>{{'ORDER_STATUS' | translate}}</th>
+              <th>{{'PRODUCT' | translate}}</th>
+              <th>{{'PRICE' | translate}}</ht>
             </tr>
           </thead>
           <tbody>
-              <tr ng-repeat="orderRow in orders | limitTo: showOrdersFilter ">
-                  <td>{{orderRow.created | date: 'medium'}}</td>
-                  <td><a ui-sref="base.orderDetail({orderId: orderRow.id})">{{orderRow.id}}</a></td>
-                  <td>{{orderRow.entries|sumByKey:'amount'|showNoOfItems}}</td>
-                  <td>{{orderRow.totalPrice | currency: orderRow.currencySymbol}}</td>
-                  <td><strong>{{orderRow.status | translate}}</strong></td>
+              <tr ng-repeat="m in wsitems">
+                  <td>{{m._createdAt}}</td>
+                  <td>{{m._product}}</a></td>
+                  <td>{{m._amount}}</td>
               </tr>
           </tbody>
         </table>
       </div>
 
-      <p ng-if="!orders.length && orders.headers">{{'NO_ORDERS' | translate}}</p>
-      <p ng-if="!orders.length && !orders.headers">{{'FAIL_ORDER' | translate}}</p>
-
-      <div class="text-center" ng-if="showOrderButtons">
-        <button class="btn btn-link" ng-show="showAllOrdersButton" ng-click="showAllOrders()">{{'SHOW_ALL' | translate}} <span class="glyphicon glyphicon-chevron-down"/></button>
-        <button class="btn btn-link" ng-show="!showAllOrdersButton" ng-click="showAllOrders()">{{'SHOW_LESS' | translate}} <span class="glyphicon glyphicon-chevron-up"/></button>
-      </div>
-
+      <p ng-if="!wsitems.length">{{'NO_ITEMS' | translate}}</p>
+      <p ng-if="!wsitems.length ">{{'FAIL_WISHLIST' | translate}}</p>
       
     </div>
 

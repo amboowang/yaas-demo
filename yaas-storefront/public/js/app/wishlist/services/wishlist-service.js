@@ -5,13 +5,8 @@ angular.module('ds.wishlist')
         function(WishlistREST){
 
         var getItems = function (parms) {
-        	//wishlists/parms
-            var wsPromise = WishlistREST.Wishlist.one('wishlists', parms).getList();
-            //ordersPromise.then(function(response) {
-            //    if (response.headers) {
-            //        GlobalData.orders.meta.total = parseInt(response.headers[settings.headers.paging.total], 10) || 0;
-            //    }
-            //});
+            //wishlists,parms
+            var wsPromise = WishlistREST.Wishlist.one('wishlists', parms).get();
             return wsPromise;
         };
 
@@ -26,13 +21,3 @@ angular.module('ds.wishlist')
 
             };
         }]);
-
-
-
-
-        ///
-    //function abc(data){
-    //    return ()=>{return data + 5};
-    //}
-
-    //console.log(abc(10)());

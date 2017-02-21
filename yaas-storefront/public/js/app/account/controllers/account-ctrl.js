@@ -13,9 +13,9 @@
 
 angular.module('ds.account')
 
-    .controller('AccountCtrl', ['$scope', 'addresses', 'account', 'orders', 'OrderListSvc', 'AccountSvc', '$uibModal', 'GlobalData', '$translate',
+    .controller('AccountCtrl', ['$scope', 'addresses', 'account', 'orders', 'OrderListSvc', 'WishlistSvc', 'AccountSvc', '$uibModal', 'GlobalData', '$translate',
 
-        function ($scope, addresses, account, orders, OrderListSvc, AccountSvc, $uibModal, GlobalData, $translate) {
+        function ($scope, addresses, account, orders, OrderListSvc, WishlistSvc, AccountSvc, $uibModal, GlobalData, $translate) {
 
             var self = this;
             self.allOrdersLoaded = false;
@@ -45,6 +45,16 @@ angular.module('ds.account')
             $scope.showAllOrdersButton = true;
             $scope.showOrderButtons = ($scope.orders.length >= $scope.showOrdersDefault);
             $scope.showOrdersFilter = $scope.showOrdersDefault;
+
+            // load the items of wishlist
+            WishlistSvc.query('wishlistOwner@hybris.com').then(
+                function (response) {
+                    $scope.wsitems = response._items;
+                },
+                function () {
+                    $scope.wsitems = [];
+                }
+            );
 
             var extractServerSideErrors = function (response) {
                 var errors = [];
@@ -206,7 +216,7 @@ angular.module('ds.account')
 
             //new added to show the products in the wishlist
             $scope.showAllWishlist = function() {
-                
+
             };
 
             $scope.showAllAddresses = function () {
