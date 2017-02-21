@@ -201,7 +201,11 @@ angular.module('ds.products')
                         }
                     ]
                 };
-                WishlistSvc.createWishlist(newWishlist);
+                WishlistSvc.createWishlist(newWishlist).then(
+                    function() {
+                        var productsAddedToWish = $filter('translate')('PRODUCTS_ADDED_TO_WISHLIST');
+                        Notification.success({message: $scope.productDetailQty + ' ' + productsAddedToWish, delay: 3000});
+                    });
             };
 
             // Helper functions to check if the currently displayed product is a base product or a product variant
