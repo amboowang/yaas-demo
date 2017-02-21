@@ -15,7 +15,9 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Component;
 
+import com.sample.wishlistDemo.api.generated.Amount;
 import com.sample.wishlistDemo.api.generated.Wishlist;
+import com.sample.wishlistDemo.api.generated.WishlistItem;
 
 public class WishlistRepo implements DataPersist {
 	
@@ -67,5 +69,29 @@ public class WishlistRepo implements DataPersist {
 		//}
 		
 		return r;
+	}
+	
+	@Override
+	public Amount getAmounts(String owner) {
+		Wishlist r = null;
+		Amount amount = new Amount();
+		
+		Query query = new Query();
+		query.addCriteria(Criteria.where("_owner").is(owner));
+		
+		//if (mongoOperation.exists(query, Wishlist.class)) {
+			// list belong to the owner exist one at least
+		r = mongoOperation.findOne(query, Wishlist.class);
+		//}
+		double t = 0;
+		if (r != null) {
+			for (WishlistItem a : r.getItems()) {
+				t = t + a.getAmount();
+			}
+		}
+		
+		amount.setAmounts(t);
+		
+		return amount;	
 	}
 }

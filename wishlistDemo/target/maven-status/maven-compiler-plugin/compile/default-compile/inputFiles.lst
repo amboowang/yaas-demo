@@ -2,6 +2,7 @@
 /home/yaas/yaas-demo/wishlistDemo/src/main/java/datapersist/DocuServiceWrapper.java
 /home/yaas/yaas-demo/wishlistDemo/src/main/java/com/sample/wishlistDemo/package-info.java
 /home/yaas/yaas-demo/wishlistDemo/src/main/java/com/sample/wishlistDemo/api/generated/package-info.java
+/home/yaas/yaas-demo/wishlistDemo/target/generated-sources/service/com/sample/wishlistDemo/api/generated/Amount.java
 /home/yaas/yaas-demo/wishlistDemo/src/main/java/datapersist/WishlistRepo.java
 /home/yaas/yaas-demo/wishlistDemo/target/generated-sources/service/com/sample/wishlistDemo/api/generated/util/OneOfDeserializerUtility.java
 /home/yaas/yaas-demo/wishlistDemo/target/generated-sources/service/com/sample/wishlistDemo/api/generated/Error.java

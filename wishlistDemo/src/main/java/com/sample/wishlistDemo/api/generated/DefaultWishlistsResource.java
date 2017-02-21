@@ -13,6 +13,7 @@ import datapersist.DocuServiceWrapper;
 import datapersist.OAuthWrapper;
 import com.sample.wishlistDemo.api.generated.WishlistItem;
 import com.sample.wishlistDemo.api.generated.YaasAwareParameters;
+import com.sample.wishlistDemo.api.generated.Amount;
 
 import datapersist.DataPersist;
 import datapersist.WishlistRepo;
@@ -78,7 +79,7 @@ public class DefaultWishlistsResource implements com.sample.wishlistDemo.api.gen
 		else {
 			LOGGER.info("GET /wishlist/"+wishlistId+" not found");	
 			return Response.ok()
-					.entity("{ret:not found}").build();
+					.entity("").build();
 		}
 	}
 
@@ -119,4 +120,34 @@ public class DefaultWishlistsResource implements com.sample.wishlistDemo.api.gen
 					.build();
 	}
 
+	/* GET / /{wishlistId}/amounts */
+	@Override
+	public Response getByWishlistIdAmounts(final YaasAwareParameters yaasAware, final java.lang.String wishlistId)
+	{
+		// place some logic here
+		Amount r = dbRepo.getAmounts(wishlistId);
+		
+		return Response.ok()
+			.entity(r).build();	
+	}
+
+	/* DELETE / /{wishlistId}/amounts */
+	@Override
+	public Response deleteByWishlistIdAmounts(final java.lang.String wishlistId)
+	{
+		// place some logic here
+		
+		return Response.noContent()
+				.build();
+	}	
+	
+	/* GET / /{wishlistId}/amounts */
+	@Override
+	public Response putByWishlistIdAmounts(final java.lang.String wishlistId, final Amount amount)
+	{
+		// place some logic here
+		
+		return Response.ok()
+			.entity("").build();	
+	}	
 }

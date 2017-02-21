@@ -9,8 +9,9 @@ schemas:
   - wishlist: !include schemas/wishlist.json
   - wishlistItem: !include schemas/wishlistItem.json
   - wishlistItems: !include schemas/wishlistItems.json
+  - amount: !include schemas/amounts.json
   - error: !include https://api.yaas.io/patterns/v1/schema-error-message.json
-
+  
 traits: 
   - !include https://api.yaas.io/patterns/v2/trait-yaas-aware.yaml
 
@@ -74,3 +75,13 @@ resourceTypes:
           201:
             body:
               application/json:
+
+    /amounts:
+      type: element
+      is: [yaasAware]
+      get:
+        description: Gets the total amounts of all products in the wishlist 
+        responses:
+          200:
+            body:
+              application/json:    

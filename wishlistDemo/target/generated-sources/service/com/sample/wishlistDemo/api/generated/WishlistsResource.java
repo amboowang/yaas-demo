@@ -27,6 +27,20 @@ public interface WishlistsResource
 	@javax.ws.rs.DELETE
 	Response deleteByWishlistId(@javax.ws.rs.BeanParam @javax.validation.Valid final YaasAwareParameters yaasAware, @javax.ws.rs.PathParam("wishlistId") final java.lang.String wishlistId);
 
+	@javax.ws.rs.Path("/{wishlistId}/amounts")
+	@javax.ws.rs.GET
+	@javax.ws.rs.Produces({"application/json"})
+	Response getByWishlistIdAmounts(@javax.ws.rs.BeanParam @javax.validation.Valid final YaasAwareParameters yaasAware, @javax.ws.rs.PathParam("wishlistId") final java.lang.String wishlistId);
+
+	@javax.ws.rs.Path("/{wishlistId}/amounts")
+	@javax.ws.rs.PUT
+	@javax.ws.rs.Consumes({"application/json"})
+	Response putByWishlistIdAmounts(@javax.ws.rs.PathParam("wishlistId") final java.lang.String wishlistId, @javax.validation.Valid final Amount amount);
+
+	@javax.ws.rs.Path("/{wishlistId}/amounts")
+	@javax.ws.rs.DELETE
+	Response deleteByWishlistIdAmounts(@javax.ws.rs.PathParam("wishlistId") final java.lang.String wishlistId);
+
 	@javax.ws.rs.Path("/{wishlistId}/wishlistItems")
 	@javax.ws.rs.GET
 	@javax.ws.rs.Produces({"application/json"})
