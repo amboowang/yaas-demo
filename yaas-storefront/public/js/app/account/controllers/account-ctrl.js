@@ -215,8 +215,32 @@ angular.module('ds.account')
             };
 
             //new added to show the products in the wishlist
-            $scope.showAllWishlist = function() {
+            $scope.showWishlistAmountsModel = function() {
 
+                modalInstance = $uibModal.open({
+                    templateUrl: 'js/app/account/templates/wishlist-amounts.html',
+                    scope: $scope,
+                    backdrop: 'static'
+                });
+
+                modalInstance.opened.then(function () {
+                    //setTimeout(function () {
+                    //    // once dialog is open initialize dynamic localized address.
+                    //    $scope.$emit('localizedAddress:updated', address.country, 'addAddress');
+                    //}, 10);
+                    WishlistSvc.queryAmounts('wishlistOwner@hybris.com').then(
+                        function (response) {
+                            $scope.amounts = response.amounts;
+                        },
+                        function () {
+                            $scope.amounts = '';
+                        }
+                    );
+                });
+            };
+
+            $scope.closeWishlistAmountsModal = function () {
+                modalInstance.close();
             };
 
             $scope.showAllAddresses = function () {

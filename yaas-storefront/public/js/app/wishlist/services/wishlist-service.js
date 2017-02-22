@@ -10,6 +10,12 @@ angular.module('ds.wishlist')
             return wsPromise;
         };
 
+        var getAmounts = function (parms) {
+            //wishlists,parms
+            var wsPromise = WishlistREST.Wishlist.one('wishlists', parms).one('amounts').get();
+            return wsPromise;
+        };
+
             return {
                 createWishlist: function (newWishlist) {
                     var createItemDef = $q.defer();
@@ -24,6 +30,10 @@ angular.module('ds.wishlist')
 
                 query: function (parms) {
                     return getItems(parms);
+                },
+
+                queryAmounts: function (parms) {
+                    return getAmounts(parms);
                 },
 
             };
