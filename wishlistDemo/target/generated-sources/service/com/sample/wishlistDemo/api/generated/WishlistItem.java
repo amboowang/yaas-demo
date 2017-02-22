@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 /**
  * Generated dto.
  */
-@javax.annotation.Generated(value = "hybris", date = "Tue Feb 21 05:38:37 EST 2017")
+@javax.annotation.Generated(value = "hybris", date = "Tue Feb 21 22:22:22 EST 2017")
 @XmlRootElement
 @JsonAutoDetect(isGetterVisibility = Visibility.NONE, getterVisibility = Visibility.NONE, setterVisibility = Visibility.NONE,
 		creatorVisibility = Visibility.NONE, fieldVisibility = Visibility.NONE)
@@ -20,9 +20,9 @@ public class WishlistItem
 	private java.lang.String _product;
 
 	@com.fasterxml.jackson.annotation.JsonProperty(value="amount")
-	@javax.validation.constraints.DecimalMin(value="1")
+	@javax.validation.constraints.DecimalMin(value="0")
 	@javax.validation.constraints.NotNull
-	private java.lang.Integer _amount;
+	private java.lang.Double _amount;
 
 	@com.fasterxml.jackson.annotation.JsonProperty(value="note")
 	private java.lang.String _note;
@@ -35,7 +35,7 @@ public class WishlistItem
 		return _product;
 	}
 	
-	public java.lang.Integer getAmount()
+	public java.lang.Double getAmount()
 	{
 		return _amount;
 	}
@@ -55,7 +55,7 @@ public class WishlistItem
 		this._product = _product;
 	}
 
-	public void setAmount(final java.lang.Integer _amount)
+	public void setAmount(final java.lang.Double _amount)
 	{
 		this._amount = _amount;
 	}

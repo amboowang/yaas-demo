@@ -11,9 +11,9 @@
     },
     "amount":
     {
-      "type":"integer",
-      "minimum":1,
-      "default":1
+      "type":"number",
+      "minimum":0,
+      "default":0
     },
     "note":
     {
